@@ -1,0 +1,66 @@
+footer {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $color_white;
+  background-color: $color_black;
+  padding: 1rem 0;
+  #address {
+    font-weight: 800;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    #oxon {
+      background-color: $color_black;
+      padding: 0;
+      margin-bottom: 1rem;
+      h3 {
+        font-size: 1.625rem;
+        line-height: 1.625rem;
+        margin: 0;
+      }
+      h4 {
+        font-size: .875rem;
+        line-height: .875rem;
+
+        margin: 0;
+      }
+    }
+    address {
+      font-size: .875rem;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1.125rem;
+    }
+    a {
+      color: $color_white;
+    }
+    @media (max-width: 640px){
+      text-align: center;
+    }
+  }
+  #logo {
+    font-weight: normal;
+
+    @extend .align-middle;
+    a {
+      display: flex;
+      flex-direction: column;
+
+      color: $color_white;
+
+      justify-content: center;
+      align-items: flex-end;
+      @include breakpoint(small down){
+        align-items: center;
+      }
+    }
+    p {
+      font-size: 20px;
+
+      margin: 0;
+
+      letter-spacing: 4.4px;
+    }
+    img {
+      max-width: 158px;
+    }
+  }
+}

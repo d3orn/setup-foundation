@@ -1,0 +1,23 @@
+{
+  "name": "microsite",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Dominique Rahm <dr@oxon.ch>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "~6.0.4",
+    "jquery": "~2.1.4",
+    "motion-ui": "~1.1.1"
+  }
+}

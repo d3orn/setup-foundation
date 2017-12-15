@@ -1,0 +1,182 @@
+| <?php require_once('./config.php'); ?>
+
+doctype
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title pw30
+    link(rel='shortcut icon', type='image/x-icon', href='css/images/favicon.ico')
+    // Vendor Styles
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200italic,300,300italic,400,400italic,600,600italic,700,700italic,900,900italic', rel='stylesheet', type='text/css')
+    // App Styles
+    link(rel='stylesheet', href='css/styles.css')
+    link(rel='stylesheet', href='css/style.css')
+    // Vendor JS
+    script(src='vendor/jquery-1.11.3.min.js')
+    // App JS
+    script(src='js/functions.js')
+  body
+
+    .callout.success(class!='<?php echo (isset($_SESSION["success"])) ? "" : "hidden" ?>' data-closable='fade-out')
+      button.close-button(aria-label="Dismiss alert" type="button" data-close)
+        span(aria-hidden="true") &times;
+      .content
+        h2 Besten dank für deine Bestellung!
+        p Deine Bestellung wurde erfolgreich abgeschickt.
+        p Sie wird dir umgehend per A Post zugestellt.
+
+    .callout.alert(class!='<?php echo (empty($_SESSION["errors"])) ? "hidden" : "" ?>')
+      button.close-button(aria-label="Close alert" type="button")
+        span(aria-hidden="true") &times;
+      .content
+        h2 Uppps
+        p Das Formular wurde nicht kortekt ausgefüllt.
+        p Bitte versuche es nochmals.
+
+    .overlay
+      svg.spinner(width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg")
+        circle.path(fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30")
+
+    .wrapper
+      header.header
+        .shell
+          .header-inner.clear
+            nav.nav
+              ul
+                li.link-mobile.link-danger
+                  a(href='#') STARTSEITE
+                li.link-danger
+                  a(href='default.html#gritplyo') GRIT PLYO
+                li.link-danger
+                  a(href='default.html#cxworx') CXWORX
+                li.link-danger
+                  a(href='default.html#standort') STANDORT
+                li
+                  a(href='calendar.html') KALENDER
+                li
+                  a(href='preise.php') TICKETS
+            // /.nav
+            .header-body
+              a.btn-menu(href='#')
+                i.ico-menu
+              a.logo(href='default.html') pw30
+            // /.header-body
+          // /.header-inner
+        // /.shell
+      // /.header
+      .wrapper-inner
+        .main
+          .shell
+            .form
+              form#payment-form(action="charge.php" method="post")
+                section.section-plans
+                  .form-body
+                    .row
+                      .col
+                        .section-body
+                          h2.section-title Aktuelle Ticketpreise
+                          // /.section-title
+                          .section-content.flex-content
+                            .product
+                              input#p1amount.amount(type='number' min='0' max='99' name='p1amount')
+                              label(for='p1amount' data-value='32')
+                                .lead
+                                  .name 2er-Ticket
+                                  .price (32.00 CHF)
+                                .description (berechtigt zum Besuch von zwei beliebigen Lektionen)
+                              input.sum(disalbed tabindex='-1')
+                            .product
+                              input#p2amount.amount(type='number' min='0' max='99' name='p2amount')
+                              label(for='p2amount' data-value='120')
+                                .lead
+                                  .name 10er-Ticket
+                                  .price (120.00 anstatt 160.00 CHF)
+                                .description (berechtigt zum Besuch von zehn beliebigen Lektionen)
+                                .sale Sommeraktion: bis August 2016 bieten wir dir die tickets zu günstigen 120.00 anstelle von 160.00 CHF an
+
+                              input.sum(disabled tabindex='-1')
+                            .total
+                              h2 gesamttotal
+                              input(disabled tabindex='-1')
+
+                            input(type='hidden' name='total')
+                            input(type='hidden' name='page' value!='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>')
+
+                            button#customButton.button(disabled) Tickets bestellen
+
+                      .col
+                        .section-image
+                          img(src='css/images/image-1.png', alt='')
+                        // /.section-image
+                      // /.col
+                    // /.row
+                  // /.form-body
+                // /.section-plans
+                section.section-outro
+                  h5.section-title Tickets
+                  // /.section-title
+                  .section-body
+                    .row
+                      .col
+                        p
+                          | Ein Einzelticket berechtigt zum Besuch einer Lektion. Um einen Kurs besuchen zu können, ist vorgängig ein gültiges Ticket zu beziehen. Diese können bei Tatkraft Creative Training in der Felsenau oder online auf PW30.CH gekauft werden. Es gibt 2er- und 10er-Karten.
+                        p
+                          | Wichtig: wir verkaufen keine Tickets vor Ort. Wenn Du Tickets kaufen möchtest kannst Du diese Online bestellen. Wir schicken Dir diese dann umgehend mit A-Post zu, sodass Du diese am nächsten Tag im Briefkasten hast.
+                        p
+                          | Wenn Du einen Kurs besuchst, nimmst Du Dein Ticket mit an den Platz. Der Kursleiter wird die Tickets jeweils vor Kursstart entwerten.
+                      // /.col
+                      .col
+                        p
+                          | Im Ticketpreis enthalten ist die Nutzung der für den jeweiligen Kurs notwendigen Geräte. Es ist lediglich passende Sportbekleidung, sowie ein Handtuch und eine Trinkflasche erforderlich. Die PW30.CH stellt modernstes, hochwertiges Trainingsmaterial zur Verfügung u.a. die von Les Mills angebotenen Produkte.
+                        p
+                          | Ein Ticket berechtigt Dich, einen beliebigen Kurs (ohne Voranmeldung) zu besuchen.
+                        p Tickets sind 12 Monate ab Kaufdatum gültig und können nicht umgetauscht werden.
+                      // /.col
+                    // /.row
+                  // /.section-body
+                // /.section-outro
+            // /.shell
+          // /.main
+          footer.footer
+            .footer-body
+              .shell
+                h5.footer-title Kurse
+                .footer-content
+                  .footer-cols.clear
+                    .footer-col
+                      p
+                        | Unsere Instruktoren präsentieren Dir die Top-Programme des Weltmarktführers „Les Mills“. Diese bestehend aus effizient zusammengestellten Übungen, kombiniert mit motivierender Musik. Jedes Programm verfolgt hierbei jeweils einen anderen Schwerpunkt. Alle 3 Monate wechseln die Programme und werden durch neue ersetzt.
+                      p
+                        | Wir bieten Dir die besten Group-Fitness-Instruktoren im Raum Bern, die Dich nicht nur motivieren, sondern Dich auch sportlich in kurzer Zeit weiter bringen und herausfordern.
+                    // /.footer-col
+                    .footer-col
+                      p
+                        | Der Kurskalender wird innerhalb der nächsten Monate schrittweise ausgebaut. Der aktuelle Plan ist jeweils auf unserer Webseite PW30.CH ersichtlich.
+                      p
+                        | Die Dauer einer Lektion haben wir nach unserem Konzept auf 30 Minuten beschränkt und hierfür spezielle Programme zusammengestellt, die in diesem Zeitrahmen ein intensives Training erlauben. Mit diesen Programmen erreichst Du schneller Resultate, wirst fit und dies mit weniger Zeitaufwand pro Training.
+                    // /.footer-col
+                  // /.footer-cols
+                // /.footer-content
+              // /.shell
+            // /.footer-body
+            .footer-foot
+              .shell
+                a.logo-footer(href='#')
+                p.copyright © 2016  –  Powered by Tatkraft Creative Training
+                // /.copyright
+                p
+                  | TATKRAFT-werk GmbH  –
+                  a(href='http://tatkraft-training.ch/') tatkraft-training.ch/
+                  |   - +41 79 344 65 14
+              // /.shell
+            // /.footer-foot
+          // /.footer
+        // /.wrapper-inner
+      // /.wrapper
+
+    script(src="https://checkout.stripe.com/checkout.js")
+    script(src="js/libs.js")
+    script(src='js/app.js')
+
+    | <?php if(isset($_SESSION['success']) or !empty($_SESSION['errors'])) session_unset() ?>

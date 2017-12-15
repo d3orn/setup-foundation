@@ -9,8 +9,8 @@ var concat = require("gulp-concat")
 var uglify = require("gulp-uglify")
 var sass = require("gulp-sass")
 var autoprefixer = require('gulp-autoprefixer')
-var minifyCSS = require("gulp-minify-css")
-var jade = require("gulp-jade")
+var cleanCSS = require("gulp-clean-css")
+var pug = require("gulp-pug")
 var jsonminify = require('gulp-jsonminify');
 var cordova = require("cordova")
 var bower = require("bower")
@@ -18,12 +18,14 @@ var del = require("del")
 var fse = require("fs-extra")
 var path = require("path")
 var bowerResourceStack = require("./bower_resources.json")
+var Comb = require('csscomb');
+var config = require('./.csscomb.json');
+var comb = new Comb(config);
 var rename = require("gulp-rename");
 
-process.env.ONSEN_SELF_BUILT = 'true'
-process.env.GULP_DEV = 'true'
+process.env.GULP_DEV = 'false'
 
-gulp.task("default", ["js-libs", "coffee", "sass", "jade"])
+gulp.task("default", ["js-libs", "coffee", "sass", "pug", "php"])
 
 gulp.task("bower", function() {
   bower.commands.install()
@@ -59,19 +61,21 @@ gulp.task("coffee", function() {
 })
 
 gulp.task("sass", function() {
-  sassOptions = { errLogToConsole: true, includePaths: ['bower_components/foundation-sites', 'bower_components/motion-ui/src'] }
+  sassOptions = { errLogToConsole: true, includePaths: ['bower_components/foundation-sites', 'bower_components/motion-ui'] }
   if (process.env.GULP_DEV !== "true") sassOptions['outputStyle'] = "compressed"
+
+  comb.processPath('./src/sass/');
 
   gulp.src("./src/sass/**/*.scss")
     .pipe(sass(sassOptions))
     .pipe(autoprefixer('last 2 version', 'Chrome', 'Safari', 'ie_mob', 'and_chr'))
-    .pipe(gulpIf((process.env.GULP_DEV !== "true"), minifyCSS({keepSpecialComments: 0})))
+    .pipe(gulpIf((process.env.GULP_DEV !== "true"), cleanCSS({keepSpecialComments: 0})))
     .pipe(gulp.dest("./www/css"))
 })
 
-gulp.task("jade", function() {
-  gulp.src("./src/jade/*.jade")
-    .pipe(jade({pretty: true}).on("error", handleError))
+gulp.task("pug", function() {
+  gulp.src("./src/pug/*.pug")
+    .pipe(pug({pretty: true}).on("error", handleError))
     .pipe(rename(function (path) {
       if (process.env.GULP_DEV !== "true") path.extname = ".php";
       return path;
@@ -79,11 +83,17 @@ gulp.task("jade", function() {
     .pipe(gulp.dest("./www/"))
 })
 
+gulp.task("php", function() {
+  src  = "./src/php/*.php"
+  dest = "./www"
+  gulp.src([src]).pipe(gulp.dest(dest));
+})
+
 gulp.task("watch", function() {
   gulp.watch([
           "./src/coffee/**/*.coffee",
           "./src/sass/*.scss",
-          "./src/jade/**/*.jade",
+          "./src/pug/**/*.pug",
         ],
     ["default"]).on("error", handleError)
 })

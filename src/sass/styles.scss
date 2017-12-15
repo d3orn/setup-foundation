@@ -1,16 +1,16 @@
 @charset 'UTF-8';
 
-@import "variables";
+@import 'variables';
 
-@import "scss/foundation";
+@import 'scss/foundation';
 @import 'motion-ui';
+//
+//@include foundation-global-styles;
+//@include foundation-flex-grid;
 
-@include foundation-global-styles;
-@include foundation-flex-grid;
-
-// @include foundation-grid;
+//@include foundation-grid;
 // @include foundation-typography;
-// @include foundation-button;
+@include foundation-button;
 // @include foundation-forms;
 // @include foundation-visibility-classes;
 // @include foundation-float-classes;
@@ -19,8 +19,8 @@
 // @include foundation-badge;
 // @include foundation-breadcrumbs;
 // @include foundation-button-group;
-// @include foundation-callout;
-// @include foundation-close-button;
+@include foundation-callout;
+@include foundation-close-button;
 // @include foundation-drilldown-menu;
 // @include foundation-dropdown;
 // @include foundation-dropdown-menu;
@@ -46,5 +46,9 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
-@import "footer";
-@import "material_design_form";
+@import 'alert';
+@import 'spinner';
+//@import 'burger';
+@import 'product';
+//@import 'footer';
+//@import 'material_design_form';

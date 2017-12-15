@@ -1,0 +1,149 @@
+
+
+
+
+
+.product {
+  font-family: 'Futura Condensed', arial, serif;
+
+  display: flex;
+
+  padding: 20px 0;
+
+  border-top: 1px dashed #a0a0a0;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  input {
+    font-size: 26px;
+    font-weight: bold;
+
+    width: 45px;
+    padding: 3px 5px;
+
+    text-align: center;
+
+    color: black;
+    border: none;
+
+    &.sum {
+      width: 100px;
+
+      text-align: right;
+    }
+  }
+
+  .row {
+    display: flex;
+
+    margin: 0;
+  }
+
+  label {
+    padding: 0 15px;
+
+    flex: 2;
+  }
+
+  .lead {
+    @extend .row;
+
+    font-size: 24px;
+    line-height: 39px;
+  }
+
+  .name {
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    color: #3d3c3f;
+
+    flex: 1;
+  }
+
+  .price {
+    text-transform: uppercase;
+
+    color: #3d3c3f;
+  }
+
+  .sale {
+    @extend .row;
+
+    font-size: 17px;
+
+    margin-top: 5px;
+
+    text-transform: uppercase;
+
+    color: #e85159;
+  }
+
+  .description {
+    @extend .row;
+
+    color: #828282;
+  }
+}
+
+.total {
+  display: flex;
+
+  padding: 20px 0 20px 60px;
+
+  text-transform: uppercase;
+
+  color: #3d3c3f;
+  border-top: 1px dashed #a0a0a0;
+  border-bottom: 1px dashed #a0a0a0;
+
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+
+    margin: 0;
+
+    text-transform: uppercase;
+  }
+
+  input {
+    font-size: 26px;
+    font-weight: bold;
+
+    width: 100px;
+    padding: 3px 5px;
+
+    text-align: right;
+
+    color: black;
+    border: none;
+  }
+}
+
+.button {
+  font-size: 1.05rem;
+
+  margin-top: 20px;
+  margin-right: 0 ;
+
+  align-self: flex-end;
+
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+.flex-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  border: none;
+  background: transparent;
+}

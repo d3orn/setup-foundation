@@ -1,0 +1,43 @@
+.hidden {
+  display: none !important;
+}
+
+.callout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: flex;
+
+  width: 600px;
+  height: 250px;
+  padding-right: 35px;
+  padding-left: 35px;
+
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+
+  color: white;
+  border: none;
+  box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+
+  align-items: center;
+  justify-content: center;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  .close-button {
+    color: rgba(255, 255, 255, .5);
+  }
+}
+
+.callout.success {
+  background-color: rgb(129, 202, 191);
+}
+
+.callout.alertt {
+  background-color: rgb(225, 55, 69);
+}

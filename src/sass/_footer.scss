@@ -1,19 +1,24 @@
 footer {
   font-family: 'Source Sans Pro', sans-serif;
+
+  padding: 1rem 0;
+
   color: $color_white;
   background-color: $color_black;
-  padding: 1rem 0;
   #address {
     font-weight: 800;
+
     padding-top: 1rem;
     padding-bottom: 1rem;
     #oxon {
-      background-color: $color_black;
-      padding: 0;
       margin-bottom: 1rem;
+      padding: 0;
+
+      background-color: $color_black;
       h3 {
         font-size: 1.625rem;
         line-height: 1.625rem;
+
         margin: 0;
       }
       h4 {
@@ -25,32 +30,33 @@ footer {
     }
     address {
       font-size: .875rem;
-      font-style: normal;
       font-weight: normal;
+      font-style: normal;
       line-height: 1.125rem;
     }
     a {
       color: $color_white;
     }
-    @media (max-width: 640px){
+    @media (max-width: 640px) {
       text-align: center;
     }
   }
   #logo {
-    font-weight: normal;
-
     @extend .align-middle;
+
+    font-weight: normal;
     a {
+      @include breakpoint(small down) {
+        align-items: center;
+      }
+
       display: flex;
       flex-direction: column;
 
       color: $color_white;
 
-      justify-content: center;
       align-items: flex-end;
-      @include breakpoint(small down){
-        align-items: center;
-      }
+      justify-content: center;
     }
     p {
       font-size: 20px;
